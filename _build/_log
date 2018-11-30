@@ -1,0 +1,28 @@
+### Starting build.
+# Target: Main.ml.depends, tags: { extension:ml, file:Main.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -modules Main.ml > Main.ml.depends
+# Target: Inference.ml.depends, tags: { extension:ml, file:Inference.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -modules Inference.ml > Inference.ml.depends
+# Target: Printer.ml.depends, tags: { extension:ml, file:Printer.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -modules Printer.ml > Printer.ml.depends
+# Target: Type.ml.depends, tags: { extension:ml, file:Type.ml, ocaml, ocamldep, quiet }
+ocamlfind ocamldep -modules Type.ml > Type.ml.depends
+# Target: Type.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Type.cmo, file:Type.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -w -40 -o Type.cmo Type.ml
+# Target: Printer.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Printer.cmo, file:Printer.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -w -40 -o Printer.cmo Printer.ml
+# Target: Inference.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Inference.cmo, file:Inference.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -w -40 -o Inference.cmo Inference.ml
+# Target: Main.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:Main.cmo, file:Main.ml, implem, ocaml, quiet }
+ocamlfind ocamlc -c -w -40 -o Main.cmo Main.ml
+# Target: Type.cmx, tags: { compile, extension:cmx, extension:ml, file:Type.cmx, file:Type.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -w -40 -o Type.cmx Type.ml
+# Target: Printer.cmx, tags: { compile, extension:cmx, extension:ml, file:Printer.cmx, file:Printer.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -w -40 -o Printer.cmx Printer.ml
+# Target: Inference.cmx, tags: { compile, extension:cmx, extension:ml, file:Inference.cmx, file:Inference.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -w -40 -o Inference.cmx Inference.ml
+# Target: Main.cmx, tags: { compile, extension:cmx, extension:ml, file:Main.cmx, file:Main.ml, implem, native, ocaml, quiet }
+ocamlfind ocamlopt -c -w -40 -o Main.cmx Main.ml
+# Target: Main.native, tags: { dont_link_with, extension:native, file:Main.native, link, native, ocaml, program, quiet }
+ocamlfind ocamlopt -linkpkg Type.cmx Printer.cmx Inference.cmx Main.cmx -o Main.native
+# Compilation successful.
